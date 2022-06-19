@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">WeatherTask</string>
+    <string name="menu_today">Today</string>
+    <string name="menu_5days">Forecast for 5 Days</string>
+    <string name="humidity_label">Humidity</string>
+    <string name="wind_label">Wind</string>
+</resources>
