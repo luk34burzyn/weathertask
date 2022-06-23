@@ -6,8 +6,8 @@
     tools:context=".ui.weather.future.FutureWeatherFragment">
 
     <TextView
+            android:id="@+id/futureWeather"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>

@@ -1,32 +1,33 @@
 package com.example.weathertask.ui.weather.current
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.weathertask.R
+import com.example.weathertask.databinding.FragmentCurrentWeatherBinding
+import com.example.weathertask.utils.viewBinding
+import org.koin.android.ext.android.get
 
-class CurrentWeatherFragment : Fragment() {
+class CurrentWeatherFragment : Fragment(R.layout.fragment_current_weather) {
 
-    companion object {
-        fun newInstance() = CurrentWeatherFragment()
+    private val binding by viewBinding(FragmentCurrentWeatherBinding::bind)
+    private val viewModel = get<CurrentWeatherViewModel>()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView()
+        viewModel.init()
     }
 
-    private lateinit var viewModel: CurrentWeatherViewModel
+    private fun initView(){
+        viewModel.downloadedCurrentWeather.observe(viewLifecycleOwner) { response ->
+            response?.let {
+                binding.currentWeather.text = it.toString()
+                Log.v("", "Current weather: $it")
+            }
+        }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_current_weather, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(CurrentWeatherViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 }
