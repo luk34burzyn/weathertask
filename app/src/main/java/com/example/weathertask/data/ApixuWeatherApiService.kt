@@ -91,31 +91,4 @@ interface ApixuWeatherApiService {
         const val TAG = "ApixuWeather"
     }
 
-    class gfgInterceptor : Interceptor {
-        override fun intercept(chain: Interceptor.Chain): Response {
-            val aRequest: Request = chain.request()
-            val aResponse = chain.proceed(aRequest)
-            when (aResponse.code) {
-                400 -> {
-                    // Show Bad Request Error Message
-                    Log.d(TAG, "Bad Request Error Message")
-                }
-                401 -> {
-                    // Show UnauthorizedError Message
-                    Log.d(TAG, "UnauthorizedError Message")
-                }
-
-                403 -> {
-                    // Show Forbidden Message
-                    Log.d(TAG, "Forbidden Message")
-                }
-
-                404 -> {
-                    // Show NotFound Message
-                    Log.d(TAG, "NotFound Message")
-                }
-            }
-            return aResponse
-        }
-    }
 }
