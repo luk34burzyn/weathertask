@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#3CF1EBF1"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        >
+
+    <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/currentDay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:layout_marginStart="@dimen/spacing_middle"
+            android:layout_marginBottom="@dimen/spacing_middle"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="@dimen/font_mlarge"
+            android:layout_marginEnd="@dimen/spacing_large"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/day" />
+
+    <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/currentDayValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:layout_marginStart="@dimen/spacing_middle"
+            android:layout_marginBottom="@dimen/spacing_middle"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/currentDay"
+            android:textSize="@dimen/font_mlarge"
+            android:layout_marginEnd="@dimen/spacing_large"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="1" />
+
+    <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mainTempDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:layout_marginBottom="@dimen/spacing_middle"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@+id/mainTempValue"
+            android:layout_marginEnd="@dimen/spacing_large"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/temperature"/>
+
+    <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/mainTempValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:layout_marginBottom="@dimen/spacing_middle"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/spacing_large"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="0°C" />
+
+    <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/minTemperature"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:layout_marginEnd="@dimen/spacing_middle"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@id/minTemperatureValue"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintTop_toBottomOf="@+id/mainTempDescription"
+            android:text="@string/min_temperature" />
+
+    <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/minTemperatureValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:layout_marginEnd="@dimen/spacing_middle"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintTop_toBottomOf="@+id/mainTempDescription"
+            tools:text="0°C" />
+
+    <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/maxTemperature"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:layout_marginEnd="@dimen/spacing_middle"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@id/maxTemperatureValue"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintTop_toBottomOf="@+id/minTemperature"
+            android:text="@string/night_temperature" />
+
+    <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/maxTemperatureValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:layout_marginEnd="@dimen/spacing_middle"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintTop_toBottomOf="@+id/minTemperature"
+            tools:text="0°C" />
+
+    <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/humidityForecast"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:layout_marginEnd="@dimen/spacing_middle"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@+id/humidityValue"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintTop_toBottomOf="@+id/maxTemperature"
+            android:text="@string/humidity" />
+
+    <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/humidityValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:layout_marginEnd="@dimen/spacing_middle"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/maxTemperature"
+            tools:text="0" />
+
+    <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/spacing_medium"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:background="@color/overlay_dark_50"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/humidityValue" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,9 @@ import com.example.weathertask.R
 import com.example.weathertask.databinding.FragmentCurrentWeatherBinding
 import com.example.weathertask.utils.viewBinding
 import org.koin.android.ext.android.get
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.math.roundToInt
 
 class CurrentWeatherFragment : Fragment(R.layout.fragment_current_weather) {
 
@@ -23,11 +26,32 @@ class CurrentWeatherFragment : Fragment(R.layout.fragment_current_weather) {
     private fun initView(){
         viewModel.downloadedCurrentWeather.observe(viewLifecycleOwner) { response ->
             response?.let {
-                binding.currentWeather.text = it.toString()
-                Log.v("", "Current weather: $it")
+                binding.updatedAt.text  =
+                    SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH).format(
+                        Date(
+                            it.dt.toLong().times(1000)
+                        )
+                    )
+                binding.skies.text = it.weather?.get(0)?.description?.uppercase()
+                binding.temp.text = it.main?.temp?.roundToInt().toString() + "°C"
+                binding.tempMin.text = "Min temp.: " + it.main?.temp_min?.roundToInt().toString() + "°C"
+                binding.tempMax.text = "Max temp.: " + it.main?.temp_max?.roundToInt().toString() + "°C"
+                binding.humidity.text = it.main?.humidity.toString()
+                binding.pressure.text = it.main?.pressure.toString()
+                binding.sunrise.text =
+                    SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH).format(
+                        Date(
+                            it.sys?.sunrise?.toLong()?.times(1000) ?: 0L
+                        )
+                    )
+                binding.sunset.text =
+                    SimpleDateFormat("dd/MM/yyyy hh:mm a", Locale.ENGLISH).format(
+                        Date(
+                            it.sys?.sunset?.toLong()?.times(1000) ?: 0L
+                        )
+                    )
+                binding.wind.text = it.wind?.speed.toString()
             }
         }
-
     }
-
 }
