@@ -13,7 +13,7 @@ import com.example.weathertask.databinding.ItemDayWeatherBinding
 
 private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<WeatherItem>() {
     override fun areItemsTheSame(oldItem: WeatherItem, newItem: WeatherItem): Boolean =
-        oldItem.day == newItem.day
+        oldItem.id == newItem.id
 
     override fun areContentsTheSame(oldItem: WeatherItem, newItem: WeatherItem): Boolean =
         oldItem == newItem
@@ -40,7 +40,8 @@ class WeatherTypeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) 
         binding = ItemDayWeatherBinding.bind(itemView)
         itemView.apply {
 
-            binding.currentDayValue.text = item.day.toString()
+            binding.currentDayValue.text = item.dateDay.toString()
+            binding.timeOfDayValue.text = item.timeOfDay.toString()
             binding.mainTempValue.text = item.mainTemp.toString()
             binding.minTemperatureValue.text = item.minDayTemp.toString()
             binding.maxTemperatureValue.text = item.maxTemp.toString()

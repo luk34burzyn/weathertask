@@ -15,4 +15,7 @@
     <string name="temperature">Temperature:</string>
     <string name="min_temperature">Min temperature</string>
     <string name="night_temperature">Night temperature</string>
+    <string name="morningTemperature">Morning temperature</string>
+    <string name="midDayTemperature">Day temperature</string>
+    <string name="time_of_day">Time of day:</string>
 </resources>

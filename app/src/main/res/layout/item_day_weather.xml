@@ -17,7 +17,7 @@
             android:layout_marginBottom="@dimen/spacing_middle"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            android:textSize="@dimen/font_mlarge"
+            android:textSize="@dimen/font_medium"
             android:layout_marginEnd="@dimen/spacing_large"
             app:layout_constraintTop_toTopOf="parent"
             android:text="@string/day" />
@@ -26,15 +26,43 @@
             android:id="@+id/currentDayValue"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:layout_marginStart="@dimen/spacing_middle"
+            android:layout_marginBottom="@dimen/spacing_middle"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="@dimen/font_medium"
+            android:layout_marginEnd="@dimen/spacing_large"
+            app:layout_constraintTop_toBottomOf="@+id/currentDay"
+            tools:text="1" />
+
+    <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/timeOfDay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_middle"
             android:layout_marginStart="@dimen/spacing_middle"
             android:layout_marginBottom="@dimen/spacing_middle"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toEndOf="@+id/currentDay"
-            android:textSize="@dimen/font_mlarge"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="@dimen/font_medium"
             android:layout_marginEnd="@dimen/spacing_large"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="1" />
+            app:layout_constraintTop_toBottomOf="@+id/currentDayValue"
+            android:text="@string/time_of_day" />
+
+    <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/timeOfDayValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:layout_marginStart="@dimen/spacing_middle"
+            android:layout_marginBottom="@dimen/spacing_middle"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="@dimen/font_medium"
+            android:layout_marginEnd="@dimen/spacing_large"
+            app:layout_constraintTop_toBottomOf="@+id/timeOfDay"
+            tools:text="Time of day" />
 
     <com.google.android.material.textview.MaterialTextView
             android:id="@+id/mainTempDescription"

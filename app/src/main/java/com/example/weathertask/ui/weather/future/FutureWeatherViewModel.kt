@@ -1,6 +1,5 @@
 package com.example.weathertask.ui.weather.future
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,7 +12,12 @@ import com.example.weathertask.response.forecast.FiveDayResponse
 import com.example.weathertask.ui.adapter.WeatherItem
 import com.example.weathertask.utils.LANGUAGE
 import com.example.weathertask.utils.METRIC
+import com.example.weathertask.utils.TimeOfDay
+import com.example.weathertask.utils.whatTimeOfDay
 import kotlinx.coroutines.launch
+import java.time.Instant
+import java.time.LocalDateTime
+import java.util.*
 
 class FutureWeatherViewModel(
     private val connectivityInterceptor: ConnectivityInterceptor
@@ -22,7 +26,7 @@ class FutureWeatherViewModel(
     private val _downloadedForecastWeather = MutableLiveData<FiveDayResponse>()
     val downloadedForecastWeather: LiveData<FiveDayResponse> = _downloadedForecastWeather
 
-    val listOfWeather : MutableList<WeatherItem> = mutableListOf()
+    val listOfWeather: MutableList<WeatherItem> = mutableListOf()
 
     fun init() {
         viewModelScope.launch {
@@ -40,16 +44,29 @@ class FutureWeatherViewModel(
         }
     }
 
-    fun convertToItems(response: FiveDayResponse){
-        for (item in 0..4){
+    fun convertToItems(response: FiveDayResponse) {
+        var checkIfContained = TimeOfDay.MORNING
+        for (item in 0..((response.list?.size?.minus(1)) ?: 0)) {
+            val thisTime = LocalDateTime.ofInstant(
+                Instant.ofEpochMilli(response.list?.get(item)?.dt?.toLong()?.times(1000) ?: 0),
+                TimeZone.getDefault().toZoneId()
+            )
+
             val fulfilledItem = WeatherItem(
-                day = item + 1,
+                id = item,
+                timeOfDay = whatTimeOfDay(thisTime),
+                dateDay = thisTime,
                 mainTemp = response.list?.get(item)?.main?.temp ?: 0.0,
                 minDayTemp = response.list?.get(item)?.main?.temp_min ?: 0.0,
                 maxTemp = response.list?.get(item)?.main?.temp_max ?: 0.0,
                 humidity = response.list?.get(item)?.main?.humidity ?: 0
             )
-            listOfWeather.add(fulfilledItem)
+
+            if(item == 0 || checkIfContained != whatTimeOfDay(thisTime)) {
+                listOfWeather.add(fulfilledItem)
+                checkIfContained = whatTimeOfDay(thisTime)
+            }
+
         }
     }
 
