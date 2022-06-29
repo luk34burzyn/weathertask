@@ -1,7 +1,3 @@
-Free plan of openweathermap contains values as below:
+Based on openweathermap api implemented details of forecast weather for 5 days.
 
-Hourly forecast: unavailable
-Daily forecast: unavailable
-Calls per minute: 60
-3 hour forecast: 5 days
-
+The code can be launch from Android SDK
