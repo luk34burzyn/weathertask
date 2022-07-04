@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.weathertask.BuildConfig
 import com.example.weathertask.data.ApixuWeatherApiService
 import com.example.weathertask.data.network.ConnectivityInterceptor
+import com.example.weathertask.data.network.WeatherNetworkDataSource
 import com.example.weathertask.data.network.WeatherNetworkDataSourceImpl
 import com.example.weathertask.response.CurrentWeatherResponse
 import com.example.weathertask.utils.LANGUAGE
@@ -15,17 +16,16 @@ import kotlinx.coroutines.launch
 
 const val TAG = "CurrentWeatherViewModel"
 
-class CurrentWeatherViewModel(private val connectivityInterceptor: ConnectivityInterceptor) :
+class CurrentWeatherViewModel(
+    private val weatherNetworkDataSource: WeatherNetworkDataSource
+) :
     ViewModel() {
 
     private val _downloadedCurrentWeather = MutableLiveData<CurrentWeatherResponse>()
     val downloadedCurrentWeather: LiveData<CurrentWeatherResponse> = _downloadedCurrentWeather
 
-    fun init() {
+    init {
         viewModelScope.launch {
-            val apiService = ApixuWeatherApiService(connectivityInterceptor)
-            val weatherNetworkDataSource = WeatherNetworkDataSourceImpl(apiService)
-
             _downloadedCurrentWeather.postValue(
                 weatherNetworkDataSource.fetchCurrentWeather(
                     "London",

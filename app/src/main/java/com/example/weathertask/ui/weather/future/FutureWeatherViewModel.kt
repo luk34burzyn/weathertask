@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.weathertask.BuildConfig
 import com.example.weathertask.data.ApixuWeatherApiService
 import com.example.weathertask.data.network.ConnectivityInterceptor
+import com.example.weathertask.data.network.WeatherNetworkDataSource
 import com.example.weathertask.data.network.WeatherNetworkDataSourceImpl
 import com.example.weathertask.response.forecast.FiveDayResponse
 import com.example.weathertask.ui.adapter.WeatherItem
@@ -20,7 +21,7 @@ import java.time.LocalDateTime
 import java.util.*
 
 class FutureWeatherViewModel(
-    private val connectivityInterceptor: ConnectivityInterceptor
+    private val weatherNetworkDataSource: WeatherNetworkDataSource
 ) : ViewModel() {
 
     private val _downloadedForecastWeather = MutableLiveData<FiveDayResponse>()
@@ -28,11 +29,8 @@ class FutureWeatherViewModel(
 
     val listOfWeather: MutableList<WeatherItem> = mutableListOf()
 
-    fun init() {
+    init {
         viewModelScope.launch {
-            val apiService = ApixuWeatherApiService(connectivityInterceptor)
-            val weatherNetworkDataSource = WeatherNetworkDataSourceImpl(apiService)
-
             _downloadedForecastWeather.postValue(
                 weatherNetworkDataSource.fetchForecastWeather(
                     "London",
